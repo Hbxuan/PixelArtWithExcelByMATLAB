@@ -49,7 +49,7 @@ I=uint8(I);
 
 allCol=AllCol(w);
 %形成w列的所有列标，输出是元胞数组
-%Form all the columns label of all w columns, the output variable allCol is a CELL array
+%Form all the column labels of all w columns, the output variable allCol is a CELL array
 
 hExcel = actxserver('excel.application');   
 % 创建一个excel实例对象
@@ -91,7 +91,7 @@ delete(hExcel);
 function allCol=AllCol(n)
 %函数功能:得到1到n行的列标
 %n：列数，必须是整数
-%colName：返回列标，元胞数组，每个元素是
+%allCol：返回列标，元胞数组，每个元素是
 
 allCol=cell(1,n);
 Alpha='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
