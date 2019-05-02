@@ -5,10 +5,33 @@ function main()
 %background color.
 
 clear
-I=imread('timg.jpg');
+%Select an image
+[file,path] = uigetfile('*.*','选择测试图片数据文件');
+if isequal(file,0)
+   disp('User selected Cancel');
+   return
+else
+   disp(['User selected ', fullfile(path,file)]);
+end
+%Read an image
+I=imread([path,file]);
+[h0,w0,~]=size(I);
+%I=imread('timg.jpg');
 %可换成任意图片路径+名。
 %Optional.The image pathname+filename can be replaced.
-I=imresize(I,[400,400]);
+
+msg1=sprintf('原图片高度为%d,输入转换之后的图片高度（单位：像素）:',h0);
+msg2=sprintf('原图片宽度为%d,输入转换之后的图片宽度（单位：像素）:',w0);
+prompt = {msg1,msg2};
+title = '图片的像素大小越小，像素化越明显';
+dims = [1 35];
+
+de1=sprintf('%d',h0/2);
+de2=sprintf('%d',w0/2);
+definput = {de1,de2};
+clear de1,clear de2;
+answer = inputdlg(prompt,title,dims,definput);
+I=imresize(I,[str2double(answer{1}),str2double(answer{2})]);
 %图片大小变换，可选。
 %Optional.To resize the image.
 
